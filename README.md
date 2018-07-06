@@ -1,4 +1,4 @@
-# This is maven based java project build to automate the given tests using Selenium and TestNg
+# This is maven based java project to automate Webbasd applicaiton using Selenium and TestNg
 
 #Project Structure
       1. Framework specific reusable methods are kept in src/main/java 
@@ -11,5 +11,5 @@
 #How to execute
  simply run 'mvn clean test' from project root folder
  
-#Where to view reports
-  Currently reports are being shown in console itself
+ 
+

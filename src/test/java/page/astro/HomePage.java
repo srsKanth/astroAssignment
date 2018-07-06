@@ -77,7 +77,7 @@ public class HomePage extends SeleniumMethods {
 			}
 		}
 
-		System.out.println(nonAcceptUrlCount + " links/urls are not getting 200 response.");
+		System.err.println(nonAcceptUrlCount + " links/urls are not getting 200 response.");
 
 	}
 

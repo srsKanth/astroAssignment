@@ -3,8 +3,11 @@
  */
 package core;
 
+import java.lang.reflect.Method;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import utils.FileHandling;
 
@@ -25,8 +28,10 @@ public class TestngMethods {
 	 * annotation to initialize browser
 	 */
 	@BeforeMethod
-	public void beforeMethod() {
+	public void beforeMethod(Method method) {
+		Test test = method.getAnnotation(Test.class);
 		SeleniumMethods.initiateBrowser(browserType);
+		System.out.println("***********Execution started for " + test.description()+"*******************");
 
 	}
 
@@ -35,10 +40,13 @@ public class TestngMethods {
 	 * all the initialized browsers using this method
 	 */
 	@AfterMethod
-	public void tearDown() {
+	public void tearDown(Method method) {
 		if (SeleniumMethods.getDriver() != null) {
 			SeleniumMethods.getDriver().quit();
 		}
+		
+		Test test = method.getAnnotation(Test.class);
+		System.out.println("***********Execution compelted for " + test.description()+"*******************");
 	}
 
 }
