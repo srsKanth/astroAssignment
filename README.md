@@ -17,5 +17,5 @@
       4. Test suite extends TestngBase class to make use of Testng listener
 
 #How to execute
-run 'mvn clean test' from project root folder
 
+run 'mvn clean test' from project root folder
