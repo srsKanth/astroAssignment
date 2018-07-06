@@ -19,6 +19,11 @@ public class SearchResultPage_FK extends SeleniumMethods {
 	By productLinkList = By.xpath("//div[@class='_3wU53n']/ancestor::a");
 	By productPriceList = By.xpath("//div[@class='_1vC4OE _2rQ-NK']");
 
+	/**
+	 * method to verify if the given keyword present in page
+	 * 
+	 * @param searchKeyword
+	 */
 	public void verifySearchResultPageWithSearchKeyword(String searchKeyword) {
 		waitForElementToBeVisible(searchResultPageSortByLink, 25);
 		if (isElementPresent(searchResultPageSortByLink) && isElementPresent(
@@ -28,21 +33,34 @@ public class SearchResultPage_FK extends SeleniumMethods {
 			System.err.println("Serach result page is displayed or given search keyword is not present");
 	}
 
+	/**
+	 * method to get the search results for the given key word in list in JSON
+	 * object
+	 * 
+	 * @param searchKeyword
+	 * @return
+	 */
 	public List<JSONObject> getElementsDetailsForGivenKeyWord(String searchKeyword) {
 		List<JSONObject> productDetails = new ArrayList<>();
 		boolean flag = false;
 
+		// loop until NextPage link become disabled
 		do {
+
+			// get the project price and link elements in list
 			List<WebElement> productNameElements = getWebElements(productNameList);
 			List<WebElement> productPriceElements = getWebElements(productPriceList);
 			List<WebElement> productLinkElements = getWebElements(productLinkList);
 
+			// loop through the product list and check if the product title
+			// contains the keyword and add the product details to list
 			for (int i = 0; i < productNameElements.size(); i++) {
 				String productName = productNameElements.get(i).getText().toLowerCase();
 				if (productName.contains(searchKeyword.toLowerCase())) {
 					JSONObject productObject = new JSONObject();
 					productObject.put("name", productName);
-					int productPrice = Integer.parseInt(productPriceElements.get(i).getText().replace(",", "").substring(1));
+					int productPrice = Integer
+							.parseInt(productPriceElements.get(i).getText().replace(",", "").substring(1));
 					productObject.put("price", productPrice);
 					productObject.put("link", productLinkElements.get(i).getAttribute("href"));
 					productObject.put("app", "FlipKart");
@@ -50,6 +68,8 @@ public class SearchResultPage_FK extends SeleniumMethods {
 					productDetails.add(productObject);
 				}
 			}
+
+			// click on next page link until nextlink becomes disabled
 			if (isElementPresent(nextLink)) {
 				clickOnElement(nextLink);
 				hardSleep(2);

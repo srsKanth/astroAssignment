@@ -36,6 +36,11 @@
 			<version>20180130</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.1.5</version>
+		</dependency>
 	</dependencies>
 
 
@@ -48,11 +53,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
-
 					</suiteXmlFiles>
-					<!--<systemPropertyVariables> <Browser>${browser}</Browser> <Env>${env}</Env> 
-						</systemPropertyVariables> -->
-
 				</configuration>
 			</plugin>
 			<plugin>

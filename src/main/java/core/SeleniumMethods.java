@@ -1,3 +1,6 @@
+/**
+ * Contains methods related to browser interactions using Selenium library
+ */
 package core;
 
 import java.net.HttpURLConnection;
@@ -11,6 +14,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -52,9 +56,10 @@ public class SeleniumMethods {
 				break;
 
 			case "firefox":
-				break;
 
-			case "ie":
+				System.setProperty("webdriver.gecko.driver",
+						rootpath + "\\src\\main\\resources\\drivers\\geckodriver.exe");
+				driver = new FirefoxDriver();
 				break;
 			}
 
@@ -63,7 +68,7 @@ public class SeleniumMethods {
 
 			// maximize window
 			getDriver().manage().window().maximize();
-			System.out.println(implicitWaitInSeconds);
+
 			setImplicitWaitInSeconds(implicitWaitInSeconds);
 		} catch (Exception e) {
 			System.err.println("Exception thrown : " + e.getMessage());
@@ -85,7 +90,7 @@ public class SeleniumMethods {
 		try {
 			element = getDriver().findElement(locator);
 		} catch (Exception e) {
-			
+
 		}
 		return element;
 	}
@@ -230,12 +235,12 @@ public class SeleniumMethods {
 		}
 		return code;
 	}
-	
-	protected void hardSleep(int timeInSeconds){
-		try{
-			Thread.sleep(timeInSeconds*1000);
-		}catch(Exception e){
-			
+
+	protected void hardSleep(int timeInSeconds) {
+		try {
+			Thread.sleep(timeInSeconds * 1000);
+		} catch (Exception e) {
+
 		}
 	}
 

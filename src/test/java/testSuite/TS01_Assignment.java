@@ -18,7 +18,7 @@ import page.flipkart.SearchResultPage_FK;
 
 public class TS01_Assignment extends TestngMethods {
 
-	// @Test
+	@Test(description = "Verify page load time, find broken links and print broken links repsonse and response time")
 	public void TC01_VefiyPageLoadAndBrokenLinks() {
 		HomePage astroHomePage = new HomePage();
 
@@ -29,7 +29,7 @@ public class TS01_Assignment extends TestngMethods {
 		astroHomePage.validateBrokenUrls();
 	}
 
-	@Test
+	@Test(description = "TC02 Find phone price difference and print the details in asceding order")
 	public void TC02_FindPhonePriceDifferenceAndPrintInAscendingOrder() {
 
 		List<JSONObject> combinedSearchResults = new ArrayList<>();
@@ -68,7 +68,7 @@ public class TS01_Assignment extends TestngMethods {
 				return compare;
 			}
 		});
-		
+
 		for (JSONObject obj : combinedSearchResults) {
 			System.err.println(obj);
 		}

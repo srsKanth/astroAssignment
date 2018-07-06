@@ -33,17 +33,16 @@ public class HomePage extends SeleniumMethods {
 		do {
 			endtime = System.currentTimeMillis();
 
-			System.out.println(endtime - startTime);
 			if ((endtime - startTime) < 100l && flag == true) {
-				System.err.println("Application is not loaded in within .1 seconds");
+				System.err.println("Fail : Application has not loaded within .1 Seconds!");
 				flag = false;
 			}
 		} while (!js.executeScript("return document.readyState").toString().equals("complete"));
 
 		if ((endtime - startTime) < 5000)
-			System.out.println("Äpplicaiton has been loaded within 5 seconds");
+			System.out.println("Success : Äpplication has been loaded within 5 seconds");
 		else
-			System.err.println("Äpplicaiton has not been loaded within 5 seconds");
+			System.err.println("Fail : Äpplication has not been loaded within 5 seconds");
 	}
 
 	public void validateHomePageFooter() {
